@@ -32,6 +32,7 @@ Create a search box control to filter/search the data store fields title and des
 
 #### Task: Edit Book 
 On the book detail page, introduce a toggle into the client UI to toggle from read-only mode to edit mode.  Provide functionality in the API to support book detail edits/updates. 
+--Done
 
 #### Bonus Task: Add New Book 
 Create functionality in the client UI to add a new book to the data store and update the API to save a new book detail item. 
