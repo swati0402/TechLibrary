@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "53ba0629-b58d-4372-a0b9-6c05bbd12cdd",
+		"name": "TechLibrary",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getbookbyId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/books/397",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books",
+						"397"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getallbooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/books",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBookbasedonPageNumPageSize",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/books?pageNumber=40&pageSize=10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "40"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSrchfilterbooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/books?searchQuery=Flex",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "searchQuery",
+							"value": "Flex"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateBookbyId",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"bookId\": 100,\r\n    \"title\": \"Code Generation in Action-UPDATED\",\r\n    \"isbn\": \"1930110979\",\r\n    \"publishedDate\": \"2003-07-01T00:00:00.000-0700\",\r\n    \"thumbnailUrl\": \"https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/herrington.jpg\",\r\n    \"descr\": \"Code Generation In Action covers building database access, user interface, remote procedure, test cases, and business logic code as well as code for other key system functions.-UPDATED\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/books/100",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBooksByPageNum",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/books?pageNumber=2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TotalBooks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/books/total",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books",
+						"total"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddNewBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Test New Book2\",\r\n    \"isbn\": \"1930110979\",\r\n    \"publishedDate\": \"2003-07-01T00:00:00.000-0700\",\r\n    \"thumbnailUrl\": \"https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/herrington.jpg\",\r\n    \"descr\": \"New book short description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/books",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteBookById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/books/399",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"books",
+						"399"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
