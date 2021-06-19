@@ -36,7 +36,7 @@
                     tag="article"
                     style="max-width: 30rem;"
                     class="mb-2">
-                <b-form-textarea v-model="book.title" style="width:100%" rows="1"></b-form-textarea>
+                <b-form-textarea v-model="book.title" style="width:100%" rows="1" required v-on:change="titleChange"></b-form-textarea>
                 <b-form-textarea v-model="book.descr" style="width:100%" rows="6">
                 </b-form-textarea>
                 <table>
@@ -45,6 +45,7 @@
                         <td><b-button v-on:click="makeReadOnly">Cancel</b-button></td>
                     </tr>
                 </table>
+                <div class="error">{{error}}</div>
             </b-card>
         </div>
 
@@ -63,7 +64,8 @@
         props: ["id"],
         data: () => ({
             book: null,
-            isEditable: false
+            isEditable: false,
+            error: null
         }),
         mounted() {
             axios.get(`https://localhost:5001/books/${this.id}`)
@@ -78,25 +80,48 @@
             makeReadOnly() {
                 this.isEditable = false;
             },
+            //reset error message
+            titleChange() {
+                if (this.book.title != null || this.book.title.trim() != "") {
+                    this.error = "";
+                }
+            },
             updateBook() {
                 const reqData = JSON.stringify(this.book);
                 console.log(reqData);
-
-                const config = {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Accept: "application/json",
-                    },
-                };
-                axios
-                    .put(`https://localhost:5001/books/${this.id}`, reqData, config)
-                    .then(
-                        (response) => (
-                            (this.book = response.data),
-                            this.isEditable = false
-                        )
-                    );
+                //validate inputs
+                if (this.book.title == null || this.book.title.trim() == "") {
+                    this.error = "* Title is required!";
+                }
+                //all valid than call add method
+                else {
+                    this.error = null;
+                    const config = {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Accept: "application/json",
+                        },
+                    };
+                    axios
+                        .put(`https://localhost:5001/books/${this.id}`, reqData, config)
+                        .then(
+                            (response) => (
+                                (this.book = response.data),
+                                this.isEditable = false
+                            )
+                        );
+                }
             }
         }
     }
 </script>
+<style>
+    .saveMessage {
+        color: #184e9a;
+        font-weight: bold;
+    }
+
+    .error {
+        color: red;
+    }
+</style>
