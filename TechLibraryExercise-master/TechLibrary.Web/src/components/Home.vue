@@ -18,10 +18,11 @@
 </tr></table>
         <table><tr><td><div class="search-bar">
                 <b-form-input @input="search_text()"
-                              type="text"
+                              type="search"
                               v-model="search.text"
                               style="width:400px;"
-                              placeholder="Search by Title/Description"></b-form-input>
+                              placeholder="Search by Title/Description">
+                </b-form-input>
                 <span class="search-icon">
                     <i class="fas fa-search"></i>
                 </span>
@@ -93,10 +94,15 @@
             },
             search_text() {
                 //console.log(this.search.text);
-                axios.get(this.baseapiurl + "?searchQuery=" + this.search.text)
-                    .then(response => {
-                        this.dataContext = response.data;
-                    });
+                if (this.search.text == "") {
+                    window.location.reload();
+                }
+                else {
+                    axios.get(this.baseapiurl + "?searchQuery=" + this.search.text)
+                        .then(response => {
+                            this.dataContext = response.data;
+                        });
+                }
             },
         },
         beforeMount() {

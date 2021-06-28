@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace TechLibrary.ResourceParameters
+﻿namespace TechLibrary.ResourceParameters
 {
     public class BooksResourceParams
     {

@@ -3,12 +3,10 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
-using TechLibrary.Domain;
 using TechLibrary.Models;
 using TechLibrary.Services;
 using TechLibrary.ResourceParameters;
 using System;
-using TechLibrary.Contracts.Responses;
 
 namespace TechLibrary.Controllers
 {

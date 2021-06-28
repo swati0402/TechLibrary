@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 const Home = () => import(/* webpackChunkName: "Home" */ './components/Home.vue');
 const Book = () => import(/* webpackChunkName: "Book" */ './components/Book.vue');
-const NewBook = () => import(/* webpackChunkName: "Book" */ './components/NewBook.vue');
+const NewBook = () => import(/* webpackChunkName: "NewBook" */ './components/NewBook.vue');
 
 const router = new VueRouter({
   routes: [
