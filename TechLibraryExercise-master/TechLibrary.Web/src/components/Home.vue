@@ -101,6 +101,7 @@
                     axios.get(this.baseapiurl + "?searchQuery=" + this.search.text)
                         .then(response => {
                             this.dataContext = response.data;
+                            this.totalPages = Math.ceil(response.data.length / this.pageSize);
                         });
                 }
             },

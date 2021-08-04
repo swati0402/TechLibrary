@@ -30,12 +30,18 @@ namespace TechLibrary.Controllers
         public async Task<IActionResult> GetAll([FromQuery] BooksResourceParams bookParams)
         {
             _logger.LogInformation("Get all books based on pagenum/pagesize");
+            try
+            {
+                var books = await _bookService.GetBooksAsync(bookParams);
 
-            var books = await _bookService.GetBooksAsync(bookParams);
+                var bookResponse = _mapper.Map<List<BookResponse>>(books);
 
-            var bookResponse = _mapper.Map<List<BookResponse>>(books);
-
-            return Ok(bookResponse);
+                return Ok(bookResponse);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
         }
 
         //get book by book id
@@ -43,12 +49,18 @@ namespace TechLibrary.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             _logger.LogInformation($"Get book by id {id}");
+            try
+            {
+                var book = await _bookService.GetBookByIdAsync(id);
 
-            var book = await _bookService.GetBookByIdAsync(id);
+                var bookResponse = _mapper.Map<BookResponse>(book);
 
-            var bookResponse = _mapper.Map<BookResponse>(book);
-
-            return Ok(bookResponse);
+                return Ok(bookResponse);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
         }
 
         //update book based on book id
@@ -58,8 +70,8 @@ namespace TechLibrary.Controllers
             _logger.LogInformation($"Update book by id {id}");
             var updatedbook = await _bookService.UpdateBookByIdAsync(id, book);
             try
-            {             
-                if (updatedbook.Item2 !=null)
+            {
+                if (updatedbook.Item2 != null)
                 {
                     return BadRequest(updatedbook.Item2.ErrorMessage);
                 }
@@ -98,9 +110,15 @@ namespace TechLibrary.Controllers
         public async Task<IActionResult> DeleteById(int id)
         {
             _logger.LogInformation($"Delete book by id {id}");
-
-            var book = await _bookService.DeleteBookByIdAsync(id);
-            return Ok(book);
+            try 
+            { 
+                var book = await _bookService.DeleteBookByIdAsync(id);
+                return Ok(book);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message.ToString());
+            }
         }
 
         //get total books from DB

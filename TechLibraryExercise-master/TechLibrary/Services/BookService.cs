@@ -38,17 +38,17 @@ namespace TechLibrary.Services
             if (!string.IsNullOrWhiteSpace(bookParams.searchQuery))
             {
                 var search = bookParams.searchQuery.Trim();
-                //Return data based on pagenum/pagesize if not passed default pagenum=1 and pagesize=10
                 queryable = queryable
                     .Where(a => a.Title.Contains(search) || a.ShortDescr.Contains(search));
             }
-
-            //Return data based on pagenum/pagesize if not passed default pagenum=1 and pagesize=10
-            queryable = queryable
-                .OrderBy(i => i.BookId)
-                .Skip((bookParams.PageNumber - 1) * bookParams.PageSize)
-                .Take(bookParams.PageSize);
-
+            else
+            {
+                //Return data based on pagenum/pagesize if not passed default pagenum=1 and pagesize=10
+                queryable = queryable
+                    .OrderBy(i => i.BookId)
+                    .Skip((bookParams.PageNumber - 1) * bookParams.PageSize)
+                    .Take(bookParams.PageSize);
+            }
             return await queryable.ToListAsync();
         }
 

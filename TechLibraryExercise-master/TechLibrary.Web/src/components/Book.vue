@@ -36,16 +36,26 @@
                     tag="article"
                     style="max-width: 30rem;"
                     class="mb-2">
-                <b-form-textarea v-model="book.title" style="width:100%" rows="1" required v-on:change="titleChange"></b-form-textarea>
-                <b-form-textarea v-model="book.descr" style="width:100%" rows="6">
-                </b-form-textarea>
-                <table>
-                    <tr>
-                        <td><b-button v-on:click="updateBook" variant="primary">Save</b-button></td>
-                        <td><b-button v-on:click="makeReadOnly">Cancel</b-button></td>
-                    </tr>
-                </table>
-                <div class="error">{{error}}</div>
+                <b-form-group label="Title:"
+                              label-for="nested-street"
+                              label-cols-sm="3"
+                              label-align-sm="right">
+                    <b-form-textarea v-model="book.title" style="width:100%" rows="1" required v-on:change="titleChange"></b-form-textarea>
+                </b-form-group>
+                <b-form-group label="Description:"
+                              label-for="nested-street"
+                              label-cols-sm="3"
+                              label-align-sm="right">
+                    <b-form-textarea v-model="book.descr" style="width:100%" rows="6">
+                    </b-form-textarea>
+                </b-form-group>
+                    <table>
+                        <tr>
+                            <td><b-button v-on:click="updateBook" variant="primary">Save</b-button></td>
+                            <td><b-button v-on:click="makeReadOnly">Cancel</b-button></td>
+                        </tr>
+                    </table>
+                    <div class="error">{{error}}</div>
             </b-card>
         </div>
 
