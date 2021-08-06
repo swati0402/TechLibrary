@@ -56,7 +56,8 @@
                 error: null,
                 isActive: false,
                 saveStatus: "",
-                max:1000
+                max: 1000,
+                redirectUrl:""
             }),
             methods: {
                 //call api to add book
@@ -83,7 +84,9 @@
                                 (response) => (
                                     (this.book = response.data),
                                     this.isActive = true,
-                                    this.saveStatus = "Book added successfully."
+                                    this.saveStatus = "Book added successfully.",
+                                    this.redirectUrl = 'book/' +  this.book.bookId ,
+                                    this.$router.push(this.redirectUrl)
                                 )
                             )
                     }

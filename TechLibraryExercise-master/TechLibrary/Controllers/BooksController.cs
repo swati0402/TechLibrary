@@ -27,6 +27,7 @@ namespace TechLibrary.Controllers
 
         //get books based on page size and page num. if not passed send page 1 and pagesize 10
         [HttpGet]
+        [HttpHead]
         public async Task<IActionResult> GetAll([FromQuery] BooksResourceParams bookParams)
         {
             _logger.LogInformation("Get all books based on pagenum/pagesize");
@@ -45,7 +46,7 @@ namespace TechLibrary.Controllers
         }
 
         //get book by book id
-        [HttpGet("{id}")]
+        [HttpGet("{id}",  Name="GetBook")]
         public async Task<IActionResult> GetById(int id)
         {
             _logger.LogInformation($"Get book by id {id}");
@@ -97,7 +98,8 @@ namespace TechLibrary.Controllers
                     return BadRequest(newbook.Item2.ErrorMessage);
                 }
                 var bookResponse = _mapper.Map<BookResponse>(newbook.Item1);
-                return Ok(bookResponse);
+                return CreatedAtRoute("GetBook", new { id = bookResponse.BookId }, bookResponse);
+                //return Ok(bookResponse);
             }
             catch (Exception ex)
             {
